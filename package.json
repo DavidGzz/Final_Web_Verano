@@ -1,0 +1,26 @@
+{
+  "name": "Final_Web_Verano",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidGzz/Final_Web_Verano.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidGzz/Final_Web_Verano/issues"
+  },
+  "homepage": "https://github.com/DavidGzz/Final_Web_Verano#readme",
+  "dependencies": {
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.25",
+    "morgan": "^1.10.0"
+  }
+}

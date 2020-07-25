@@ -1,0 +1,66 @@
+<%- include ("./partials/_header") %>
+
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-5">
+            <div class = "card">
+                <div class = "card-body">
+                    <table class = "table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (var i = 0; i < user.length; i++)  {     %>
+                                <tr>
+                                    <td> <strong> <%= user[i].username %>   </strong> </td>
+                                    <td>  <%= user[i].email %> </td>
+                                </tr>
+                                <%  }  %>
+                        </tbody>
+                        <!--AGREGAR LO NECESARIO PARA PONER EL NOMBRE DEL USUARIO-->
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class = "col-md-6">
+            <div class = "row-md-5">
+                <h1>Favorites</h1>
+            </div>
+            <table class = "table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Genre</th>
+                        <th>Do Stuff</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i = 0; i < videogames.length; i++)  {     %>
+                        <% if (videogames[i].id == fav) {%>
+                        <tr>
+                            <td> <strong> <%= videogames[i].title %>   </strong> </td>
+                            <td>  <%= videogames[i].description %> </td>
+                            <td>  <%= videogames[i].genre %> </td>
+                            <td>
+                                <a class = "btn btn-danger" href = ""> Remove </a>
+                            </td>
+                        </tr>
+                        <%  }  %>
+                    <%  }  %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<%- include ("./partials/_footer") %>
