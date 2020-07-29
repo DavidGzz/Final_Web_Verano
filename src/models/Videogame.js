@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const Schema =  mongoose.Schema;
+const {Schema,model} = require('mongoose');
 
 const videogameSchema  = Schema ({
     title: {
@@ -13,4 +12,4 @@ const videogameSchema  = Schema ({
     }
 });
  
-module.exports = mongoose.model('videogames', videogameSchema);
+module.exports = model('videogames', videogameSchema);

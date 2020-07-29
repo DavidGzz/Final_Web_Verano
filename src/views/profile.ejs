@@ -10,16 +10,12 @@
                         <thead>
                             <tr>
                                 <th>Username</th>
-                                <th>Email</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% for (var i = 0; i < user.length; i++)  {     %>
-                                <tr>
-                                    <td> <strong> <%= user[i].username %>   </strong> </td>
-                                    <td>  <%= user[i].email %> </td>
-                                </tr>
-                                <%  }  %>
+                            <tr>
+                                <td> <strong> <%= user.username %>   </strong> </td>
+                            </tr>
                         </tbody>
                         <!--AGREGAR LO NECESARIO PARA PONER EL NOMBRE DEL USUARIO-->
                     </table>
@@ -41,7 +37,6 @@
                 </thead>
                 <tbody>
                     <% for (var i = 0; i < videogames.length; i++)  {     %>
-                        <% if (videogames[i].id == fav) {%>
                         <tr>
                             <td> <strong> <%= videogames[i].title %>   </strong> </td>
                             <td>  <%= videogames[i].description %> </td>
@@ -57,10 +52,6 @@
         </div>
     </div>
 </div>
-
-
-
-
 
 
 <%- include ("./partials/_footer") %>
