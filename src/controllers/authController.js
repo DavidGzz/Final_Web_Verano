@@ -72,14 +72,12 @@ router.post("/signin",async (req,res,next)=>{
 // LLEVA AL USUARIO RECIÉN LOGGEADO O SIGNED A LA PAGINA PRINCIPAL
 router.get("/index",verifyToken, async (req,res)=>{
     const user = await User.findById(req.userId,{password:0});
-    console.log(`USER ${user}`);
     const videogames = await Videogame.find();
     res.render('index', {user, videogames});
 })
 
 router.get('/indexU', verifyToken, async (req, res) => {
     const user = await User.findById(req.userId,{password:0});
-    console.log(`USER ${user}`);
     const videogames = await Videogame.find();
     res.render('indexU', {user, videogames});
 })
@@ -87,8 +85,7 @@ router.get('/indexU', verifyToken, async (req, res) => {
 // LLEVA AL USUARIO A SU PERFIL
 // POR HACER ***
 router.get("/profile/:id", verifyToken, async (req,res)=>{
-    
-    const user = await User.findById(req.userId,{password:0});
+    const user = await User.findById(req.params.id);
     const videogames = await Videogame.find();
     res.render('profile', {user, videogames});
 })
@@ -108,12 +105,12 @@ router.get('/delete/:id',  async (req,res) =>{
 })
 
 // EDITA JUEGOS
-router.get('/edit/:id',   async(req,res) =>{
+router.get('/edit/:id', async(req,res) =>{
     const videogames = await Videogame.findById(req.params.id);
     res.render('edit', {videogames});
 })
     
-router.post('/edit/:id',   async(req,res) =>{
+router.post('/edit/:id', async(req,res) =>{
     var  id = req.params.id;
     await Videogame.update({_id: id}, req.body);
     res.redirect('/index');

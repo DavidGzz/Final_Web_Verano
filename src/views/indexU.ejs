@@ -2,8 +2,6 @@
 <div class = "container">
     <div class = "col">
         <h1> WELCOME: <%= user.username %></h1>
-        <h5>Go to your profile</h5>
-        <a href=/profile/<%= user._id %> class="btn btn-info" href="turn"> Profile </a>
         <div class = "row-md-7 topnav">
             <table class = "table table-bordered table-hover">
                 <thead>
@@ -22,8 +20,6 @@
                             <td>  <%= videogames[i].genre %> </td>
                             <td>
                                 <a class = "btn btn-dark" href = "" action = /fav method = "post"> Add </a>
-                                <!--SOLO PARA ADMINISTRADOR-->
-                                <!--<a href=/delete/ videogames[i]._id   class="btn btn-danger" href="turn">Delete </a>-->
                             </td>
                         </tr>
                     <%  }  %>
