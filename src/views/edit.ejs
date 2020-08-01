@@ -10,13 +10,13 @@
                     <H3>Genre: <%= videogames.genre%></H3>
                     <form action = "/edit/<%= videogames._id%>" method = "post">
                         <div class = "form-group">
-                            <input class = "form-control" type = "text" name = "title" placeholder = "Title">
+                            <input class = "form-control" type = "text" name = "title" value = "<%= videogames.title%>">
                         </div>
                         <div class = "form-group">
-                            <input class = "form-control" type = "text" name = "description" placeholder = "Description">
+                            <input class = "form-control" type = "text" name = "description" value = "<%= videogames.description%>">
                         </div>
                         <div class = "form-group">
-                            <input class = "form-control" type = "text" name = "genre" placeholder = "Genre">
+                            <input class = "form-control" type = "text" name = "genre" value = "<%= videogames.genre%>">
                         </div>
                         <button class = "btn btn-primary" type = "submit">
                             Edit
