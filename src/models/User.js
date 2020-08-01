@@ -23,5 +23,14 @@ userSchema.methods.validatePassword = async function(password)
    // console.log("////",password,this.password)
 return bcrypt.compare(password,this.password)
 }
+
+userSchema.methods.isAdmin = function(username, password){
+    if(username == "admin" && password == "admin"){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
  
 module.exports = model('User', userSchema);

@@ -1,6 +1,7 @@
 <%- include ("./partials/_header") %>
 <div class = "container">
     <div class = "col">
+        <h1> WELCOME: <%= user.username %></h1>
         <div class = "row-md-5">
             <div class = "card">
                 <div class = "card-body">
@@ -21,9 +22,7 @@
                 </div>
             </div>
         </div>
-        <h2> <% console.log(`INDEX ${user}`)%></h2>
-        <h1> WELCOME: <% user %></h1>
-        <div class = "row-md-7">
+        <div class = "row-md-7 topnav">
             <table class = "table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -41,8 +40,8 @@
                             <td>  <%= videogames[i].genre %> </td>
                             <td>
                                 <a class = "btn btn-dark" href = "" action = /fav method = "post"> Add </a>
-                                <!--SOLO PARA ADMINISTRADOR-->
-                                <!--<a href=/delete/ videogames[i]._id   class="btn btn-danger" href="turn">Delete </a>-->
+                                <a href=/delete/<%=videogames[i]._id %>  class="btn btn-danger" href="turn">Delete </a>
+                                <a href=/edit/<%= videogames[i]._id %> class="btn btn-info" href="turn">Edit </a>
                             </td>
                         </tr>
                     <%  }  %>

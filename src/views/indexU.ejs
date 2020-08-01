@@ -1,0 +1,36 @@
+<%- include ("./partials/_header") %>
+<div class = "container">
+    <div class = "col">
+        <h1> WELCOME: <%= user.username %></h1>
+        <h5>Go to your profile</h5>
+        <a href=/profile/<%= user._id %> class="btn btn-info" href="turn"> Profile </a>
+        <div class = "row-md-7 topnav">
+            <table class = "table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Genre</th>
+                        <th>Favorites</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i = 0; i < videogames.length; i++)  {     %>
+                        <tr>
+                            <td> <strong> <%= videogames[i].title %>   </strong> </td>
+                            <td>  <%= videogames[i].description %> </td>
+                            <td>  <%= videogames[i].genre %> </td>
+                            <td>
+                                <a class = "btn btn-dark" href = "" action = /fav method = "post"> Add </a>
+                                <!--SOLO PARA ADMINISTRADOR-->
+                                <!--<a href=/delete/ videogames[i]._id   class="btn btn-danger" href="turn">Delete </a>-->
+                            </td>
+                        </tr>
+                    <%  }  %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%- include ("./partials/_footer") %>

@@ -52,14 +52,18 @@ router.post("/signin",async (req,res,next)=>{
       }
       else {
        const token =  jwt.sign({id:user._id}, config.secret,{
-            expiresIn: 60*60*24
+            expiresIn: 100*100*100
         })
         res.cookie('token', token , {
             httpOnly:true,
-            maxAge: 30000
+            maxAge: 3000000
         })
-        res.redirect('/index')
-
+        if (user.isAdmin(username, password)){
+            res.redirect('/index');
+        }
+        else{
+            res.redirect('/indexU');
+        }
       }
       
     }
@@ -73,18 +77,20 @@ router.get("/index",verifyToken, async (req,res)=>{
     res.render('index', {user, videogames});
 })
 
+router.get('/indexU', verifyToken, async (req, res) => {
+    const user = await User.findById(req.userId,{password:0});
+    console.log(`USER ${user}`);
+    const videogames = await Videogame.find();
+    res.render('indexU', {user, videogames});
+})
+
 // LLEVA AL USUARIO A SU PERFIL
 // POR HACER ***
-router.get("/profile", verifyToken, async (req,res,next)=>{
+router.get("/profile/:id", verifyToken, async (req,res)=>{
     
     const user = await User.findById(req.userId,{password:0});
     const videogames = await Videogame.find();
-    if(!user){
-        return res.status(404).send("No user found");
-    }
-    else {
-        res.render('profile', {user, videogames});
-    }
+    res.render('profile', {user, videogames});
 })
 
 // AGREGA JUEGOS A LA BD
@@ -93,6 +99,26 @@ router.post('/add', async (req,res) =>{
     await videogame.save();
     res.redirect('/index');
 });
+
+// BORRA JUEGOS
+router.get('/delete/:id',  async (req,res) =>{
+    var id = req.params.id;
+    await Videogame.remove({_id: id});
+    res.redirect('/index');
+})
+
+// EDITA JUEGOS
+router.get('/edit/:id',   async(req,res) =>{
+    const videogames = await Videogame.findById(req.params.id);
+    res.render('edit', {videogames});
+})
+    
+router.post('/edit/:id',   async(req,res) =>{
+    var  id = req.params.id;
+    await Videogame.update({_id: id}, req.body);
+    res.redirect('/index');
+})
+    
 
 // HACE LOGOUT
 router.get("/logout", (req,res)=>{
