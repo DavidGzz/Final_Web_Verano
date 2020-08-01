@@ -32,7 +32,7 @@ router.post("/signup",async (req,res,next)=>{
     },config.secret,{
         expiresIn: 60*60*24
     })
-    res.redirect('/index');
+    res.redirect('/home');
 })
 
 // Para que el usuario haga login
@@ -59,10 +59,10 @@ router.post("/signin",async (req,res,next)=>{
             maxAge: 3000000
         })
         if (user.isAdmin(username, password)){
-            res.redirect('/index');
+            res.redirect('/home');
         }
         else{
-            res.redirect('/indexU');
+            res.redirect('/homeU');
         }
       }
       
@@ -70,16 +70,16 @@ router.post("/signin",async (req,res,next)=>{
 })
 
 // LLEVA AL USUARIO RECIÉN LOGGEADO O SIGNED A LA PAGINA PRINCIPAL
-router.get("/index",verifyToken, async (req,res)=>{
+router.get("/home",verifyToken, async (req,res)=>{
     const user = await User.findById(req.userId,{password:0});
     const videogames = await Videogame.find();
-    res.render('index', {user, videogames});
+    res.render('home', {user, videogames});
 })
 
-router.get('/indexU', verifyToken, async (req, res) => {
+router.get('/homeU', verifyToken, async (req, res) => {
     const user = await User.findById(req.userId,{password:0});
     const videogames = await Videogame.find();
-    res.render('indexU', {user, videogames});
+    res.render('homeU', {user, videogames});
 })
 
 // LLEVA AL USUARIO A SU PERFIL
@@ -94,14 +94,14 @@ router.get("/profile/:id", verifyToken, async (req,res)=>{
 router.post('/add', async (req,res) =>{
     const videogame = new Videogame(req.body);
     await videogame.save();
-    res.redirect('/index');
+    res.redirect('/home');
 });
 
 // BORRA JUEGOS
 router.get('/delete/:id',  async (req,res) =>{
     var id = req.params.id;
     await Videogame.remove({_id: id});
-    res.redirect('/index');
+    res.redirect('/home');
 })
 
 // EDITA JUEGOS
@@ -113,7 +113,7 @@ router.get('/edit/:id', async(req,res) =>{
 router.post('/edit/:id', async(req,res) =>{
     var  id = req.params.id;
     await Videogame.update({_id: id}, req.body);
-    res.redirect('/index');
+    res.redirect('/home');
 })
     
 
@@ -127,7 +127,7 @@ router.get("/logout", (req,res)=>{
 
 // REDIRECCIONA AL HOME COMO PAGIN INICIAL
 router.get('/', async (req,res) =>{
-    res.render('home');
+    res.render('index');
 });
 
 module.exports = router;

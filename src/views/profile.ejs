@@ -19,6 +19,7 @@
                         </tbody>
                         <!--AGREGAR LO NECESARIO PARA PONER EL NOMBRE DEL USUARIO-->
                     </table>
+                    <a href="/homeU"  class="btn btn-primary" href="turn"> Home </a>
                 </div>
             </div>
         </div>
@@ -36,6 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!--CAMBIAR POR FAVORITOS-->
                     <% for (var i = 0; i < videogames.length; i++)  {     %>
                         <tr>
                             <td> <strong> <%= videogames[i].title %>   </strong> </td>
@@ -48,7 +50,6 @@
                         <%  }  %>
                 </tbody>
             </table>
-            <a href="/indexU"  class="btn btn-primary" href="turn"> Home </a>
         </div>
     </div>
 </div>

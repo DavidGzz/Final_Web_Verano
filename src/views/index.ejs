@@ -1,56 +1,38 @@
-<%- include ("./partials/_header") %>
-<div class = "container">
-    <div class = "col">
-        <h1> WELCOME: <%= user.username %></h1>
-        <h5>Go to profile</h5>
-        <a href=/profile/<%= user._id %> class="btn btn-dark" href="turn"> Profile </a>
-        <div class = "row-md-5">
-            <div class = "card">
-                <div class = "card-body">
-                    <form action = "/add" method = "post">
-                        <div class = "form-group">
-                            <input class = "form-control" type = "text" name = "title" placeholder = "Title">
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title> Proyecto Final </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-dark mb-4">
+            <h1 class="navbar-brand">Videojuegos</h1>
+        </nav>
+        <div class = "container">
+            <div class = "col">
+                <div class = "row-md-5">
+                    <div class = "card">
+                        <div class = "card-body">
+                            <form action = "/signin" method = "get">
+                                <div class = "form-group">
+                                    <button class = "btn btn-primary" type = "submit">
+                                        Log In
+                                    </button>
+                                </div>
+                            </form>
+                            <form action = "/signup" method = "get">
+                                <div class = "form-group" action = "/p" method = "get">
+                                    <button class = "btn btn-primary" type = "submit">
+                                        Sign Up
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                        <div class = "form-group">
-                            <input class = "form-control" type = "text" name = "description" placeholder = "Description">
-                        </div>
-                        <div class = "form-group">
-                            <input class = "form-control" type = "text" name = "genre" placeholder = "Genre">
-                        </div>
-                        <button class = "btn btn-primary" type = "submit">
-                            Add
-                        </button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class = "row-md-7 topnav">
-            <table class = "table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Genre</th>
-                        <th>Favorites</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for (var i = 0; i < videogames.length; i++)  {     %>
-                        <tr>
-                            <td> <strong> <%= videogames[i].title %>   </strong> </td>
-                            <td>  <%= videogames[i].description %> </td>
-                            <td>  <%= videogames[i].genre %> </td>
-                            <td>
-                                <a class = "btn btn-dark" href = "" action = /fav method = "post"> Add </a>
-                                <a href=/delete/<%=videogames[i]._id %>  class="btn btn-danger" href="turn">Delete </a>
-                                <a href=/edit/<%= videogames[i]._id %> class="btn btn-info" href="turn">Edit </a>
-                            </td>
-                        </tr>
-                    <%  }  %>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<%- include ("./partials/_footer") %>
+    </body>
+</html>
