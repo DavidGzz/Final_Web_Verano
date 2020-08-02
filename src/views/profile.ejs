@@ -19,7 +19,7 @@
                         </tbody>
                         <!--AGREGAR LO NECESARIO PARA PONER EL NOMBRE DEL USUARIO-->
                     </table>
-                    <a href="/homeU"  class="btn btn-primary" href="turn"> Home </a>
+                    <a href=/check/<%=user._id%>  class="btn btn-primary" href="turn"> Home </a>
                 </div>
             </div>
         </div>
@@ -38,11 +38,11 @@
                 </thead>
                 <tbody>
                     <!--CAMBIAR POR FAVORITOS-->
-                    <% for (var i = 0; i < videogames.length; i++)  {     %>
+                    <% for (var i = 0; i < user.likedGames.length; i++)  {     %>
                         <tr>
-                            <td> <strong> <%= videogames[i].title %>   </strong> </td>
-                            <td>  <%= videogames[i].description %> </td>
-                            <td>  <%= videogames[i].genre %> </td>
+                            <td> <strong> <%= user[i].likedGames %>   </strong> </td>
+                            <!--<td>  <= videogames[i].description %> </td>
+                            <td>  <= videogames[i].genre %> </td>-->
                             <td>
                                 <a class = "btn btn-danger" href = ""> Remove </a>
                             </td>

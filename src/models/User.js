@@ -1,5 +1,6 @@
-const {Schema,model} = require('mongoose');
+const {Schema,model, Mongoose} = require('mongoose');
 const bcrypt = require('bcryptjs');
+const Videogame = require("../models/Videogame");
 
 const userSchema  = new Schema ({
     username: {
@@ -9,7 +10,10 @@ const userSchema  = new Schema ({
     password: {
         type: String,
         required: true
-    }
+    },
+    likedGames: [{
+        // HACER QUE ESTE ARRAY SEA DE TIPO VIDEOGAME
+    }]
 });
 
 userSchema.methods.encryptPassword = async (password) =>{
@@ -20,17 +24,16 @@ userSchema.methods.encryptPassword = async (password) =>{
 
 userSchema.methods.validatePassword = async function(password)
 {
-   // console.log("////",password,this.password)
-return bcrypt.compare(password,this.password)
+    return bcrypt.compare(password,this.password)
 }
 
 userSchema.methods.isAdmin = function(username, password){
-    if(username == "admin" && password == "admin"){
+    if(username == "admin"){
         return true;
     }
     else{
         return false;
     }
 }
- 
+
 module.exports = model('User', userSchema);

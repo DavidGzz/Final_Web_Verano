@@ -97,6 +97,27 @@ router.post('/add', async (req,res) =>{
     res.redirect('/home');
 });
 
+router.get('/check/:id', async (req,res) =>{
+    const user = await User.findById(req.params.id);
+    if(user.isAdmin(user.username)){
+        res.redirect('/home')
+    }
+    else{
+        res.redirect('/homeU')
+    }
+});
+
+// AGREGA JUEGOS A LA BD
+router.post('/add/:id', async (req,res) =>{
+    const user = User.findById(this._id);
+    const videogame = Videogame.findById(req.params.id);
+    // HACIENDO EL ARREGLO likedGames de tipo Videogame deberian
+    // de jalar estas dos lineas (creo)
+    /*user.likedGames.includes(id);
+    console.log(`User ${user.likedGames}`);*/
+    res.redirect('/homeU');
+});
+
 // BORRA JUEGOS
 router.get('/delete/:id',  async (req,res) =>{
     var id = req.params.id;
