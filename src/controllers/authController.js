@@ -37,11 +37,9 @@ router.post("/signup",async (req,res,next)=>{
 
 // Para que el usuario haga login
 router.post("/signin",async (req,res,next)=>{
-    console.log(req.body)
     const {username,password} = req.body;
    
     const user = await User.findOne({username:username});
-    console.log(username,password)
     if (!user){
         return res.status(404).send("The user does not exist")
     }
@@ -120,7 +118,7 @@ router.post('/fav/:idGame&:id', async (req,res) =>{
     const videogame = await Videogame.findById(req.params.idGame);
     await user.likedGames.addToSet(videogame);
     await user.save();
-    res.redirect('/profile/'+req.params.id);
+    res.redirect('/homeU');
 });
 
 // BORRA JUEGOS DE FAV
