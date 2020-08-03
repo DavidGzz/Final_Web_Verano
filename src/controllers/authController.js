@@ -83,12 +83,12 @@ router.get('/homeU', verifyToken, async (req, res) => {
 })
 
 // LLEVA AL USUARIO A SU PERFIL
-// POR HACER ***
 router.get("/profile/:id", verifyToken, async (req,res)=>{
     const user = await User.findById(req.params.id);
     await user.populate('likedGames').execPopulate();
-    const suggested = [];
-    res.render('profile', {user, suggested});
+    const videogames = await Videogame.find();
+    //const suggested = [];
+    res.render('profile', {user, videogames});
 })
 
 // AGREGA JUEGOS A LA BD
@@ -109,9 +109,11 @@ router.get('/check/:id', async (req,res) =>{
 });
 
 // AGREGAR JUEGOS A FAVORITOS
-router.post('/add/:id/:idGame', async (req,res) =>{
+router.post('/fav/:idGame&:id', async (req,res) =>{
     const user = await User.findById(req.params.id);
     const videogame = await Videogame.findById(req.params.idGame);
+    console.log(`USER ${user}`);
+    console.log(`VIEOGAME ${videogame}`)
     await user.likedGames.addToSet(videogame);
     await user.save();
     res.redirect('/homeU');
