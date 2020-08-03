@@ -3,6 +3,6 @@ dotenv.config();
 
 module.exports = {
      'port': process.env.PORT || 3000,
-     'db': process.env.MONGODB || "mongodb://localhost:27017/videogames",
+     'db': "mongodb+srv://admin:ERE7fzrMpVXOnMIE@cluster0-r7op0.mongodb.net/<dbname>?retryWrites=true&w=majority",
      'secret': process.env.SECRET || "mysecretkey"
 };

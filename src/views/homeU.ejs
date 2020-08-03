@@ -21,8 +21,8 @@
                             <td>  <%= videogames[i].description %> </td>
                             <td>  <%= videogames[i].genre %> </td>
                             <td>
-                                <form action = /add/<%=user._id %>/<%=videogames[i]._id%> method = "post">
-                                    <button class="btn btn-primary">Add </button>
+                                <form action = /fav/<%=videogames[i]._id%>&<%=user._id%> method = "post">
+                                    <button class="btn btn-primary" type = "submit"> Add </a>
                                 </form>
                             </td>
                         </tr>
