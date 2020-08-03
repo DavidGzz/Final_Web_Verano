@@ -86,8 +86,9 @@ router.get('/homeU', verifyToken, async (req, res) => {
 // POR HACER ***
 router.get("/profile/:id", verifyToken, async (req,res)=>{
     const user = await User.findById(req.params.id);
-    const videogames = await Videogame.find();
-    res.render('profile', {user, videogames});
+    await user.populate('likedGames').execPopulate();
+    const suggested = [];
+    res.render('profile', {user, suggested});
 })
 
 // AGREGA JUEGOS A LA BD
@@ -107,14 +108,12 @@ router.get('/check/:id', async (req,res) =>{
     }
 });
 
-// AGREGA JUEGOS A LA BD
-router.post('/add/:id', async (req,res) =>{
-    const user = User.findById(this._id);
-    const videogame = Videogame.findById(req.params.id);
-    // HACIENDO EL ARREGLO likedGames de tipo Videogame deberian
-    // de jalar estas dos lineas (creo)
-    /*user.likedGames.includes(id);
-    console.log(`User ${user.likedGames}`);*/
+// AGREGAR JUEGOS A FAVORITOS
+router.post('/add/:id/:idGame', async (req,res) =>{
+    const user = await User.findById(req.params.id);
+    const videogame = await Videogame.findById(req.params.idGame);
+    await user.likedGames.addToSet(videogame);
+    await user.save();
     res.redirect('/homeU');
 });
 
