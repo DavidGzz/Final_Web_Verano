@@ -22,7 +22,7 @@
                     <a href=/check/<%=user._id%>  class="btn btn-primary" href="turn"> Home </a>
                 </div>
             </div>
-            <div class = "col-md-4">
+            <div class = "col-md-7">
                 <div class = "row-md-5">
                     <h3>Suggestions</h3>
                 </div>
@@ -36,10 +36,8 @@
                     </thead>
                     <tbody>
                         <% l = Math.floor(Math.random() * user.likedGames.length)%>
-                        <% console.log("L", l); %>
                         <% console.log(user.likedGames[l].genre); %>
                         <% g = user.likedGames[l].genre%>
-                        <% console.log("G", g); %>
                         <% for(var x = 0; x < videogames.length; x++) { %>
                             <% if(g == videogames[x].genre) {%>
                                 <% if(videogames[x].title != user.likedGames[l].title) { %>
@@ -65,7 +63,6 @@
                         <th>Title</th>
                         <th>Description</th>
                         <th>Genre</th>
-                        <th>Remove</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,9 +71,6 @@
                             <td> <strong> <%= user.likedGames[i].title %>   </strong> </td>
                             <td>  <%= user.likedGames[i].description %> </td>
                             <td>  <%= user.likedGames[i].genre %> </td>
-                            <td>
-                                <a href=/delete/<%=user._id%>&<%=user.likedGames[i]._id%>  class="btn btn-danger">Delete </a>
-                            </td>
                         </tr>
                         <%  }  %>
                 </tbody>

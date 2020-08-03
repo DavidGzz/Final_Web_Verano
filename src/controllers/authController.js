@@ -112,8 +112,6 @@ router.get('/check/:id', async (req,res) =>{
 router.post('/fav/:idGame&:id', async (req,res) =>{
     const user = await User.findById(req.params.id);
     const videogame = await Videogame.findById(req.params.idGame);
-    console.log(`USER ${user}`);
-    console.log(`VIEOGAME ${videogame}`)
     await user.likedGames.addToSet(videogame);
     await user.save();
     res.redirect('/homeU');
@@ -124,6 +122,14 @@ router.get('/delete/:id',  async (req,res) =>{
     var id = req.params.id;
     await Videogame.remove({_id: id});
     res.redirect('/home');
+})
+
+router.get('/delete/:id&:gId', async (req,res) =>{
+    //const user = await User.findById(req.params.id);
+    var id = req.params.gId;
+    console.log("USER", id);
+    //await user.likedGames.remove(_id);
+    res.redirect('/profile');
 })
 
 // EDITA JUEGOS
