@@ -36,7 +36,6 @@
                     </thead>
                     <tbody>
                         <% l = Math.floor(Math.random() * user.likedGames.length)%>
-                        <% console.log(user.likedGames[l].genre); %>
                         <% g = user.likedGames[l].genre%>
                         <% for(var x = 0; x < videogames.length; x++) { %>
                             <% if(g == videogames[x].genre) {%>
