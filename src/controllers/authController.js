@@ -124,11 +124,12 @@ router.post('/fav/:idGame&:id', async (req,res) =>{
 });
 
 // BORRA JUEGOS DE FAV
-router.get('/delete/:id/:idGame',  async (req,res) =>{
+router.get('/delete/:id&:idGame',  async (req,res) =>{
     const user = await User.findById(req.params.id);
     var idGame = req.params.idGame;
     await user.populate('likedGames').execPopulate();
-    await user.likedGames.pop({_id: idGame});
+    //await user.likedGames.pop({_id: idGame});
+    await user.likedGames.remove({_id: idGame});
     await user.save();
     res.redirect('/profile/'+req.params.id);
 })
@@ -140,13 +141,13 @@ router.get('/delete/:id',  async (req,res) =>{
     res.redirect('/home');
 })
 
-router.get('/delete/:id&:gId', async (req,res) =>{
+/*router.get('/delete/:id&:gId', async (req,res) =>{
     //const user = await User.findById(req.params.id);
     var id = req.params.gId;
     console.log("USER", id);
     //await user.likedGames.remove(_id);
     res.redirect('/profile');
-})
+})*/
 
 // EDITA JUEGOS
 router.get('/edit/:id', async(req,res) =>{

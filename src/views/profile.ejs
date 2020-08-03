@@ -41,7 +41,7 @@
                             <td>  <%= suggested[i].description %> </td>
                             <td>  <%= suggested[i].genre %> </td>
                             <td>
-                                <form action = /add/<%=user._id%>/<%=suggested[i]._id%> method = "post">
+                                <form action = /fav/<%=suggested[i]._id%>&<%=user._id%> method = "post">
                                     <button class="btn btn-primary">Add </button>
                                 </form>
                             </td>
@@ -61,7 +61,7 @@
                         <th>Title</th>
                         <th>Description</th>
                         <th>Genre</th>
-                        <th></th>
+                        <th>Remove</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,7 +70,7 @@
                             <td> <strong> <%= user.likedGames[i].title %>   </strong> </td>
                             <td>  <%= user.likedGames[i].description %> </td>
                             <td>  <%= user.likedGames[i].genre %> </td>
-                            <a href=/delete/<%=user._id%>/<%=user.likedGames[i]._id%>  class="btn btn-danger">Delete </a>
+                            <td><a href=/delete/<%=user._id%>&<%=user.likedGames[i]._id%>  class="btn btn-danger">Delete </a></td>
                         </tr>
                         <%  }  %>
                 </tbody>
