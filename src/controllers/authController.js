@@ -86,9 +86,15 @@ router.get('/homeU', verifyToken, async (req, res) => {
 router.get("/profile/:id", verifyToken, async (req,res)=>{
     const user = await User.findById(req.params.id);
     await user.populate('likedGames').execPopulate();
-    const videogames = await Videogame.find();
-    //const suggested = [];
-    res.render('profile', {user, videogames});
+    var genre_random = "Action";
+    if (user.likedGames.length > 0){
+        genre_random = user.likedGames[0].genre;
+    }
+    const suggested = await Videogame.aggregate([
+        {$match: {genre: genre_random}},
+        {$sample: {size: 5}}
+    ]);
+    res.render('profile', {user, suggested});
 })
 
 // AGREGA JUEGOS A LA BD
@@ -114,8 +120,18 @@ router.post('/fav/:idGame&:id', async (req,res) =>{
     const videogame = await Videogame.findById(req.params.idGame);
     await user.likedGames.addToSet(videogame);
     await user.save();
-    res.redirect('/homeU');
+    res.redirect('/profile/'+req.params.id);
 });
+
+// BORRA JUEGOS DE FAV
+router.get('/delete/:id/:idGame',  async (req,res) =>{
+    const user = await User.findById(req.params.id);
+    var idGame = req.params.idGame;
+    await user.populate('likedGames').execPopulate();
+    await user.likedGames.pop({_id: idGame});
+    await user.save();
+    res.redirect('/profile/'+req.params.id);
+})
 
 // BORRA JUEGOS
 router.get('/delete/:id',  async (req,res) =>{
