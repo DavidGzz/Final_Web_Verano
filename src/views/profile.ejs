@@ -35,19 +35,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% l = Math.floor(Math.random() * user.likedGames.length)%>
-                        <% g = user.likedGames[l].genre%>
-                        <% for(var x = 0; x < videogames.length; x++) { %>
-                            <% if(g == videogames[x].genre) {%>
-                                <% if(videogames[x].title != user.likedGames[l].title) { %>
-                                <tr>
-                                    <td> <strong> <%= videogames[x].title %>   </strong> </td>
-                                    <td>  <%= videogames[x].description %> </td>
-                                    <td>  <%= videogames[x].genre %> </td>
-                                </tr>
-                                <% } %>
-                            <% }%>
-                        <% } %>
+                        <% for (var i = 0; i < suggested.length; i++)  {     %>
+                        <tr>
+                            <td> <strong> <%= suggested[i].title %>   </strong> </td>
+                            <td>  <%= suggested[i].description %> </td>
+                            <td>  <%= suggested[i].genre %> </td>
+                            <td>
+                                <form action = /add/<%=user._id%>/<%=suggested[i]._id%> method = "post">
+                                    <button class="btn btn-primary">Add </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <%  }  %>
                     </tbody>
                 </table>
             </div>
@@ -62,6 +61,7 @@
                         <th>Title</th>
                         <th>Description</th>
                         <th>Genre</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,6 +70,7 @@
                             <td> <strong> <%= user.likedGames[i].title %>   </strong> </td>
                             <td>  <%= user.likedGames[i].description %> </td>
                             <td>  <%= user.likedGames[i].genre %> </td>
+                            <a href=/delete/<%=user._id%>/<%=user.likedGames[i]._id%>  class="btn btn-danger">Delete </a>
                         </tr>
                         <%  }  %>
                 </tbody>
