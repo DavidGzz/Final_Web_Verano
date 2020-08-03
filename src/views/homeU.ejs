@@ -17,11 +17,13 @@
                 <tbody>
                     <% for (var i = 0; i < videogames.length; i++)  {     %>
                         <tr>
-                            <td> <strong> <%= videogames[i].title %>   </strong> </td>
+                            <td> <strong> <%= videogames[i].title %> </strong> </td>
                             <td>  <%= videogames[i].description %> </td>
                             <td>  <%= videogames[i].genre %> </td>
                             <td>
-                                <a href= "" class="btn btn-primary" href="turn"> Add </a>
+                                <form action = /add/<%=user._id %>/<%=videogames[i]._id%> method = "post">
+                                    <button class="btn btn-primary">Add </button>
+                                </form>
                             </td>
                         </tr>
                     <%  }  %>

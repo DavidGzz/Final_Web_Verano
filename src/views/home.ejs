@@ -41,9 +41,6 @@
                             <td>  <%= videogames[i].description %> </td>
                             <td>  <%= videogames[i].genre %> </td>
                             <td>
-                                <section action = /add/<%videogames[i]._id%> method = "post">
-                                    <button class="btn btn-primary">Add </button>
-                                </section>
                                 <a href=/delete/<%=videogames[i]._id %>  class="btn btn-danger" href="turn">Delete </a>
                                 <a href=/edit/<%= videogames[i]._id %> class="btn btn-info" href="turn">Edit </a>
                             </td>

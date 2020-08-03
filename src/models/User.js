@@ -13,6 +13,8 @@ const userSchema  = new Schema ({
     },
     likedGames: [{
         // HACER QUE ESTE ARRAY SEA DE TIPO VIDEOGAME
+        type: Schema.Types.ObjectId,
+        ref: "videogames"
     }]
 });
 
